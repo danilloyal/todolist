@@ -38,9 +38,8 @@ public class TaskController {
         if(id == null)throw new Exception("Id not found");
         var task = this.taskRepository.findById(id).orElse(null);
 
-        Utils.copyNonNullProperties(taskModel, task);
-
         if(task == null)throw new Exception("Task not found");
+        Utils.copyNonNullProperties(taskModel, task);
 
         var userId = request.getAttribute("userId");
         if(!task.getUserId().equals(userId)){
